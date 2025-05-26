@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+
+{% block title %}QuizGenAPP{% endblock %}
+
+{% block stylesheets %}
+<link
+			href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css"
+			rel="stylesheet"
+		/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link rel="stylesheet" href="{{url_for('static', filename = 'css/HomeStyle.css')}}"/>
+
+<!-- Sliders Css -->
+		      <!--=============== REMIXICONS ===============-->
+			  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" crossorigin=""/>
+
+			  <!--=============== SWIPER CSS ===============-->
+			  <link rel="stylesheet" href="{{url_for('static', filename = 'css/swiper-bundle.min.css') }}"/>
+			<script src="{{url_for('static', filename = 'js/swiper-bundle.min.js')}}"></script>
+
+			  <!--=============== CSS ===============-->
+			  <link rel="stylesheet" href="{{url_for('static', filename ='css/SliderStyle.css')}}"/>
+
+
+<!-- == google font == -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+    <!-- == icon == -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+{% endblock %}
+{% block javascripts %}
+
+{% endblock %}
+
+{% block content %}
+<div class="main" id="home">
+			<nav>
+				<h2 class="logo">
+					<img src="static/img/Homepg/Weblogo.gif" alt="logo" id="Navlogo" />
+				</h2>
+				<div class="navBar2">
+					<a href="#home" target="_self"><h3>Home</h3></a>
+					<a href="/getuser?userId={{ user[0] }}" target="_self"><h3>Profile</h3></a>
+					<a href="/mycontent?userId={{ user[0] }}"><h3>Content</h3></a>
+					<h3>About Us</h3>
+					<a href="/feedback?userId={{ user[0] }}" target="_self"><h3>Feedback</h3></a>
+					<i class="ri-menu-line"></i>
+					<a href="/logout" target="_parent"><button id="LogOutBtn" >LogOut</button></a>
+				</div>
+			</nav>
+
+			<div class="content">
+				<div class="contentLeft" >
+					<h1 style="margin-top:3rem;">Welcome <span>{{user[0]}}!</span></h1>
+					<h1>
+						Transform Learning with Our <span>Powerful</span> Quiz and Question
+						Generator!
+					</h1>
+					<p>
+						Effortless quiz creation and intelligent question generation for
+						personalized, effective learning experiences.
+					</p>
+					<button>Explore</button>
+					<!-- CTA => Call Through Action Button -->
+				</div>
+				<div class="contentRight">
+					<img alt="" src="exam.svg" name="imageSlide" id="SlidingImage"  >
+				</div>
+			</div>
+		</div>
+
+		<div class="menu" id="menu">
+			<div class="maindiv">
+				<center>
+				<span class="Menuheading">Explore our Models</span>
+				<p class="p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt impedit doloribus animi porro ex magni ipsum, odio exercitationem labore pariatur autem aliquid architecto. Error, commodi aspernatur! Nesciunt dolores unde perferendis, beatae suscipit eum veritatis deserunt.</p>
+
+				</center>
+				<section class="container">
+				   <div class="card__container swiper">
+					  <div class="card__content">
+						 <div class="swiper-wrapper">
+							<article class="card__article swiper-slide">
+							   <div class="card__image">
+								  <img src="static/img/Homepg/Summary (1).png" alt="image" class="card__img">
+								  <div class="card__shadow"></div>
+							   </div>
+
+							   <div class="card__data">
+								  <h3 class="card__name">Paragraph Summarization</h3>
+								  <p class="card__description">
+									 Passionate about development and design,
+									 I carry out projects at the request of users.
+								  </p>
+
+								  <a href="/Summarization?userId={{ user[0] }}" class="card__button">View More</a>
+							   </div>
+							</article>
+
+							<article class="card__article swiper-slide">
+							   <div class="card__image">
+								  <img src="static/img/Homepg/MCQ.png" alt="image" class="card__img">
+								  <div class="card__shadow"></div>
+							   </div>
+
+							   <div class="card__data">
+								  <h3 class="card__name">MCQ Generation</h3>
+								  <p class="card__description">
+									 Passionate about development and design,
+									 I carry out projects at the request of users.
+								  </p>
+
+								  <a href="/mcqGen?userId={{ user[0] }}" class="card__button">View More</a>
+							   </div>
+							</article>
+
+							<article class="card__article swiper-slide">
+							   <div class="card__image">
+								  <img src="static/img/Homepg/QuestionCreation.png" alt="image" class="card__img">
+								  <div class="card__shadow"></div>
+							   </div>
+
+							   <div class="card__data">
+								  <h3 class="card__name">Subjective Questions </h3>
+								  <p class="card__description">
+									 Passionate about development and design,
+									 I carry out projects at the request of users.
+								  </p>
+
+								  <a href="/subjQues?userId={{ user[0] }}" class="card__button">View More</a>
+							   </div>
+							</article>
+
+							<article class="card__article swiper-slide">
+							   <div class="card__image">
+								  <img src="static/img/Homepg/ObjectiveQues.png" alt="image" class="card__img">
+								  <div class="card__shadow"></div>
+							   </div>
+
+							   <div class="card__data">
+								  <h3 class="card__name">Objective Question</h3>
+								  <p class="card__description">
+									 Passionate about development and design,
+									 I carry out projects at the request of users.
+								  </p>
+
+								  <a href="#" class="card__button">View More</a>
+							   </div>
+							</article>
+
+							<article class="card__article swiper-slide">
+							   <div class="card__image">
+								  <img src="static/img/Homepg/QuestionPaperChecker.png" alt="image" class="card__img">
+								  <div class="card__shadow"></div>
+							   </div>
+
+							   <div class="card__data">
+								  <h3 class="card__name">Grammer Checker</h3>
+								  <p class="card__description">
+									 Passionate about development and design,
+									 I carry out projects at the request of users.
+								  </p>
+
+								  <a href="/GrammerCheck?userId={{ user[0] }}" class="card__button">View More</a>
+							   </div>
+							</article>
+						 </div>
+					  </div>
+
+					  <!-- Navigation buttons -->
+					  <div class="swiper-button-next">
+						 <i class="ri-arrow-right-s-line"></i>
+					  </div>
+
+					  <div class="swiper-button-prev">
+						 <i class="ri-arrow-left-s-line"></i>
+					  </div>
+
+					  <!-- Pagination -->
+					  <div class="swiper-pagination"></div>
+				   </div>
+				</section>
+				</div>
+		</div>
+{% endblock %}
+{% block javascripts_bottom %}
+
+
+<script src = "{{url_for('static', filename = 'js/swipercard.js')}}"></script>
+
+
+<!--<script type="module">-->
+<!--import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";-->
+<!--			import {-->
+<!--				getDatabase,-->
+<!--				set,-->
+<!--				ref,-->
+<!--			} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";-->
+<!--			import {-->
+<!--				getAuth,-->
+<!--				createUserWithEmailAndPassword,-->
+<!--				signInWithEmailAndPassword,-->
+<!--				signInWithPopup,-->
+<!--				GoogleAuthProvider,-->
+<!--                signOut-->
+<!--			} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";-->
+<!--            const firebaseConfig = {-->
+<!--				apiKey: "AIzaSyB6GSyLHO7D6R9o5ZiyZkRetduGinZlgVc",-->
+<!--				authDomain: "testgenerator-c7a0d.firebaseapp.com",-->
+<!--				databaseURL: "https://testgenerator-c7a0d-default-rtdb.firebaseio.com",-->
+<!--				projectId: "testgenerator-c7a0d",-->
+<!--				storageBucket: "testgenerator-c7a0d.appspot.com",-->
+<!--				messagingSenderId: "511267868593",-->
+<!--				appId: "1:511267868593:web:01cfa2922bba6353daf790",-->
+<!--			};-->
+
+<!--            var LogOut = document.querySelector('#LogOutBtn');-->
+
+<!--            const app = initializeApp(firebaseConfig);-->
+<!--			const database = getDatabase(app);-->
+<!--			const auth = getAuth(app);-->
+<!--            LogOut.addEventListener('click',(e)=>-->
+<!--            {-->
+<!--                signOut(auth)-->
+<!--				.then(() => {-->
+<!--					// Sign-out successful.-->
+<!--                    alert("LogOut Successfully");-->
+<!--                    window.location.href = "/";-->
+<!--				})-->
+<!--				.catch((error) => {-->
+<!--					// An error happened.-->
+<!--				});-->
+<!--            })-->
+
+<!--		</script>-->
+<script src="{{url_for('static', filename = 'js/HomeScript.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+
+	{% endblock %}

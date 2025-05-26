@@ -1,0 +1,333 @@
+{% extends "base.html" %}
+
+{% block title %}QuizGenAPP{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/loginStyle.css') }}">
+{% endblock %}
+{% block javascripts %}
+<script
+			src="https://kit.fontawesome.com/64d58efce2.js"
+			crossorigin="anonymous"
+		></script>
+
+
+{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    {% endwith %}
+    <div class="container">
+			<div class="forms-container">
+				<div class="signin-signup">
+					<form action="/" class="sign-in-form" method="POST">
+						{{ form.hidden_tag() }}
+						<h2 class="title">Sign in</h2>
+						<div class="input-field">
+							<i class="fas fa-user"></i>
+
+							{{ form.email(class="form-control", placeholder="Email", id="emailLOG") }}
+							{% if form.email.errors %}
+						<div class="alert alert-danger" role="alert">
+							<ul>
+							{% for error in form.email.errors %}
+								<li>{{ error }}</li>
+							{% endfor %}
+							</ul>
+						{% endif %}
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i>
+							{{ form.password(class="form-control", placeholder="Password",id="passLOG") }}
+							{% if form.password.errors %}
+							<div class="alert alert-danger" role="alert">
+							<ul>
+							{% for error in form.password.errors %}
+								<li>{{ error }}</li>
+							{% endfor %}
+							</ul>
+						{% endif %}
+						</div>
+						{{ form.submit(class="btn solid", value="Log In", id="LoginBtn") }}
+
+
+						<p class="social-text">Or Sign in with social platforms</p>
+						<div class="social-media">
+							<a href="#" class="social-icon">
+								<i class="fab fa-facebook-f" id="FaceBookSIGN"></i>
+							</a>
+							<a href="#" class="social-icon">
+								<i class="fab fa-twitter"></i>
+							</a>
+							<a href="#" class="social-icon">
+								<i class="fab fa-google" id="googleSIGN"></i>
+							</a>
+							<a href="#" class="social-icon">
+								<i class="fab fa-linkedin-in"></i>
+							</a>
+						</div>
+					</form>
+					<form action="/register" class="sign-up-form" method="POST">
+						{{ form1.hidden_tag() }}
+						<h2 class="title">Sign up</h2>
+						<div class="input-field">
+							<i class="fas fa-user"></i>
+							{{ form1.username(id="UsernameSIGN", placeholder="Username") }}
+							{% if form1.username.errors %}
+						<div class="alert alert-danger" role="alert">
+							<ul>
+							{% for error in form1.username.errors %}
+								<li>{{ error }}</li>
+							{% endfor %}
+							</ul>
+							{% endif %}
+						</div>
+						<div class="input-field">
+							<i class="fas fa-envelope"></i>
+							{{ form1.email(id="emailSIGN", placeholder="Email") }}
+							{% if form1.email.errors %}
+						<div class="alert alert-danger" role="alert">
+							<ul>
+							{% for error in form1.email.errors %}
+								<li>{{ error }}</li>
+							{% endfor %}
+							</ul>
+							{% endif %}
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i>
+							{{ form1.password(id="passSIGN", placeholder="password") }}
+							{% if form1.password.errors %}
+						<div class="alert alert-danger" role="alert">
+							<ul>
+							{% for error in form1.password.errors %}
+								<li>{{ error }}</li>
+							{% endfor %}
+							</ul>
+							{% endif %}
+
+						</div>
+							<div class="input-field">
+							<i class="fas fa-lock"></i>
+							{{ form1.confirm_password(id="passSIGN", placeholder="confirm password") }}
+							{% if form1.confirm_password.errors %}
+						<div class="alert alert-danger" role="alert">
+							<ul>
+							{% for error in form1.confirm_password.errors %}
+								<li>{{ error }}</li>
+							{% endfor %}
+							</ul>
+							{% endif %}
+						</div>
+
+						{{ form1.submit(class="btn", value="Sign up", id="signup") }}
+						<p class="social-text">Or Sign up with social platforms</p>
+						<div class="social-media">
+							<a href="#" class="social-icon">
+								<i class="fab fa-facebook-f"></i>
+							</a>
+							<a href="#" class="social-icon">
+								<i class="fab fa-twitter"></i>
+							</a>
+							<a href="#" class="social-icon">
+								<i class="fab fa-google"></i>
+							</a>
+							<a href="#" class="social-icon">
+								<i class="fab fa-linkedin-in"></i>
+							</a>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="panels-container">
+				<div class="panel left-panel">
+					<div class="content">
+						<h2>Create Your Account and Unlock a World of Learning Opportunities!</h2>
+						<p>
+							Join our community of educators and learners today. Registration is quick, easy, and brings numerous benefits.
+						</p>
+						<button class="btn transparent" id="sign-up-btn">Sign up</button>
+					</div>
+					<img src="static/img/log.svg" class="image" alt="" />
+				</div>
+				<div class="panel right-panel">
+					<div class="content">
+						<h3>Welcome Back! Log in to Continue Your Learning Journey.</h3>
+						<p>
+							Enter your credentials below to access your account and continue your educational experience.
+						</p>
+						<button class="btn transparent" id="sign-in-btn">Sign in</button>
+					</div>
+					<img src="static/img/register.svg" class="image" alt="" />
+				</div>
+			</div>
+		</div>
+{% endblock %}
+{% block javascripts_bottom %}
+<script src="{{ url_for('static', filename='js/loginScript.js') }}"></script>
+
+<!--<script type="module">-->
+<!--			// Import the functions you need from the SDKs you need-->
+<!--			import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";-->
+<!--			import {-->
+<!--				getDatabase,-->
+<!--				set,-->
+<!--				ref,-->
+<!--			} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";-->
+<!--			import {-->
+<!--				getAuth,-->
+<!--				createUserWithEmailAndPassword,-->
+<!--				signInWithEmailAndPassword,-->
+<!--				signInWithPopup,-->
+<!--				GoogleAuthProvider,-->
+<!--				FacebookAuthProvider-->
+<!--			} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";-->
+
+<!--			// Your web app's Firebase configuration-->
+<!--			const firebaseConfig = {-->
+<!--				apiKey: "AIzaSyB6GSyLHO7D6R9o5ZiyZkRetduGinZlgVc",-->
+<!--				authDomain: "testgenerator-c7a0d.firebaseapp.com",-->
+<!--				databaseURL: "https://testgenerator-c7a0d-default-rtdb.firebaseio.com",-->
+<!--				projectId: "testgenerator-c7a0d",-->
+<!--				storageBucket: "testgenerator-c7a0d.appspot.com",-->
+<!--				messagingSenderId: "511267868593",-->
+<!--				appId: "1:511267868593:web:01cfa2922bba6353daf790",-->
+<!--			};-->
+
+<!--			// Initialize Firebase-->
+<!--			const app = initializeApp(firebaseConfig);-->
+<!--			const database = getDatabase(app);-->
+<!--			const auth = getAuth(app);-->
+
+<!--			const SignUpBtn = document.getElementById("signup");-->
+<!--			const LoginBtn = document.getElementById("LoginBtn");-->
+
+<!--			// Signup function-->
+<!--			SignUpBtn.addEventListener("click", (e) => {-->
+<!--				var email = document.getElementById("emailSIGN").value;-->
+<!--				var password = document.getElementById("passSIGN").value;-->
+<!--				var username = document.getElementById("UsernameSIGN").value;-->
+<!--				createUserWithEmailAndPassword(auth, email, password)-->
+<!--					.then((userCredential) => {-->
+<!--						// Signed up-->
+<!--						const user = userCredential.user;-->
+
+<!--						// Storing New User dataBase at Database-->
+<!--						set(ref(database, "users/" + user.uid), {-->
+<!--							username: username,-->
+<!--							email: email,-->
+<!--						});-->
+
+<!--						alert("User Created");-->
+<!--						// ...-->
+<!--					})-->
+<!--					.catch((error) => {-->
+<!--						const errorCode = error.code;-->
+<!--						const errorMessage = error.message;-->
+<!--						alert(errorMessage);-->
+<!--						// ..-->
+<!--					});-->
+<!--			});-->
+
+<!--			// Login Function-->
+<!--			LoginBtn.addEventListener("click", (e) => {-->
+<!--				var Email = document.getElementById("emailLOG").value;-->
+<!--				var Password = document.getElementById("passLOG").value;-->
+<!--				signInWithEmailAndPassword(auth, Email, Password)-->
+<!--					.then((userCredential) => {-->
+<!--						// Signed in-->
+<!--						const user = userCredential.user;-->
+<!--						alert("Logged in Successfully!");-->
+<!--						window.location.href = "home";-->
+<!--						// ...-->
+<!--					})-->
+<!--					.catch((error) => {-->
+<!--						const errorCode = error.code;-->
+<!--						const errorMessage = error.message;-->
+<!--						alert(errorMessage);-->
+<!--					});-->
+<!--			});-->
+
+
+<!--      // Google SignIn-->
+<!--      const provider = new GoogleAuthProvider();-->
+<!--      const google = document.getElementById('googleSIGN');-->
+<!--      google.addEventListener('click',(e)=>-->
+<!--      {-->
+<!--        signInWithPopup(auth, provider)-->
+<!--  .then((result) => {-->
+<!--    // This gives you a Google Access Token. You can use it to access the Google API.-->
+<!--    const credential = GoogleAuthProvider.credentialFromResult(result);-->
+<!--    const token = credential.accessToken;-->
+<!--    // The signed-in user info.-->
+<!--    const user = result.user;-->
+<!--    alert("Sign In with google!");-->
+<!--	window.location.href = "home";-->
+<!--    // IdP data available using getAdditionalUserInfo(result)-->
+<!--    // ...-->
+<!--  }).catch((error) => {-->
+<!--    // Handle Errors here.-->
+<!--    const errorCode = error.code;-->
+<!--    const errorMessage = error.message;-->
+<!--    // The email of the user's account used.-->
+<!--    const email = error.customData.email;-->
+<!--    // The AuthCredential type that was used.-->
+<!--    const credential = GoogleAuthProvider.credentialFromError(error);-->
+
+<!--    alert(errorMessage);-->
+<!--    // ...-->
+<!--  });-->
+
+<!--      })-->
+
+
+
+
+
+<!--	//   FaceBook SignIn-->
+
+<!--	const FaceBookprovider = new FacebookAuthProvider();-->
+<!--	const facebook = document.querySelector('#FaceBookSIGN');-->
+
+<!--	facebook.addEventListener('click',(e)=>-->
+<!--	{-->
+<!--	signInWithPopup(auth, FaceBookprovider)-->
+<!--  .then((result) => {-->
+<!--    // The signed-in user info.-->
+<!--    const user = result.user;-->
+
+<!--    // This gives you a Facebook Access Token. You can use it to access the Facebook API.-->
+<!--    const credential = FacebookAuthProvider.credentialFromResult(result);-->
+<!--    const accessToken = credential.accessToken;-->
+<!--	alert("Sign In with FaceBook!");-->
+<!--	window.location.href = "home";-->
+
+<!--    // IdP data available using getAdditionalUserInfo(result)-->
+<!--    // ...-->
+<!--  })-->
+<!--  .catch((error) => {-->
+<!--    // Handle Errors here.-->
+<!--    const errorCode = error.code;-->
+<!--    const errorMessage = error.message;-->
+<!--    // The email of the user's account used.-->
+<!--    const email = error.customData.email;-->
+<!--    // The AuthCredential type that was used.-->
+<!--    const credential = FacebookAuthProvider.credentialFromError(error);-->
+<!--	alert(errorMessage);-->
+
+<!--    // ...-->
+<!--  });-->
+<!--	})-->
+<!--	</script>-->
+{% endblock %}
+```

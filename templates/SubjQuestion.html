@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}Question Generator{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/MCQ_Generator.css') }}">
+{% endblock %}
+{% block javascripts %}
+<script
+			src="https://kit.fontawesome.com/64d58efce2.js"
+			crossorigin="anonymous"
+		></script>
+		<script src="https://code.iconify.design/iconify-icon/2.0.0/iconify-icon.min.js"></script>
+
+
+
+{% endblock %}
+{% block content %}
+
+
+
+<div id="bar">
+			<div id="backico">
+				<a href="/home"><iconify-icon
+					icon="line-md:arrow-small-left"
+					width="50px"
+				></iconify-icon></a>
+			</div>
+			<div id="subbar">
+				<iconify-icon icon="healthicons:i-exam-multiple-choice" width="65px"></iconify-icon>
+				<h1 style="font-size: 2rem; font-family: Arial, Helvetica, sans-serif">
+					Subjective Question Generator
+				</h1>
+			</div>
+		</div>
+
+<div id="container">
+    <div id="input">
+        <div class="header">
+            <h2>Input Text</h2>
+        </div>
+        <form action="/subjGen?user_Id={{ user[0] }}" method="post">
+            <textarea id="text" name="text" placeholder="Enter the text here">{{text}}</textarea>
+            <br>
+            <label for="num">Select Number of Questions:</label>
+            <select name="num">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+
+            <br>
+            <label for="marks" >Select Marks for Each Question:</label>
+            <select name="marks">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+
+
+
+
+            <br>
+            <button type="submit" id="btn1">Generate Questions</button>
+        </form>
+    </div>
+
+<!--    data is json contains some questions with options & questions having "question" tag and option have "options" tag i want to print them in textarea in proper format question and it's option-->
+
+    <div id="output">
+        <div class="header">
+            <h2>Generated Question Answer</h2>
+        </div>
+        <form action="/subjDownload?user_Id={{ user[0] }}" method="post">
+        <textarea id="outputtext" name="output" placeholder="Generated Questions will appear here">{{data}}</textarea>
+
+        <br>
+        <button type="submit">Download PDF</button></a>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+

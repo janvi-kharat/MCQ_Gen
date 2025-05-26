@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+
+
+    <script
+			src="https://kit.fontawesome.com/64d58efce2.js"
+			crossorigin="anonymous"
+		></script>
+		<script src="https://code.iconify.design/iconify-icon/2.0.0/iconify-icon.min.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Profile.css') }}">
+</head>
+<body>
+<div id="bar">
+			<div id="backico">
+				<a href="/home"><iconify-icon
+					icon="line-md:arrow-small-left"
+					width="50px"
+				></iconify-icon></a>
+			</div>
+			<div id="subbar">
+				<iconify-icon icon="healthicons:i-exam-multiple-choice" width="65px"></iconify-icon>
+				<h1 style="font-size: 2rem; font-family: Arial, Helvetica, sans-serif">
+					My Profile
+				</h1>
+			</div>
+		</div>
+    <div class="container">
+        <div class="profile-header">
+            <img src="{{ url_for('static', filename='img/undraw_my_documents_re_13dc.svg') }}" alt="Your Photo" height="70%" width="70%">
+            <h1>{{user[0]}}</h1>
+        </div>
+        <div class="profile-details">
+            <p><strong>Email:</strong> {{ user[2] }}</p>
+            <p><strong>UserId:</strong> {{user[1]}}</p>
+            <!-- Update your email and age above -->
+        </div>
+    </div>
+</body>
+</html>

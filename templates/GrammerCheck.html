@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}QuizGenAPP{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/grammerCheck.css') }}">
+{% endblock %}
+{% block javascripts %}
+<script
+			src="https://kit.fontawesome.com/64d58efce2.js"
+			crossorigin="anonymous"
+		></script>
+		<script src="https://code.iconify.design/iconify-icon/2.0.0/iconify-icon.min.js"></script>
+{% endblock %}
+{% block content %}
+
+<div id="bar">
+			<div id="backico">
+				<a href="/home"><iconify-icon
+					icon="line-md:arrow-small-left"
+					width="50px"
+				></iconify-icon></a>
+			</div>
+			<div id="subbar">
+				<h1 style="font-size: 4rem; font-family: Arial, Helvetica, sans-serif">
+					Grammer
+				</h1>
+				<iconify-icon icon="fxemoji:openbook" width="100px"></iconify-icon>
+				<h1 style="font-size: 4rem; font-family: Arial, Helvetica, sans-serif">
+					Check
+				</h1>
+			</div>
+		</div>
+
+		<div id="container">
+			<div id="input">
+				<form action="/Summarization" method="post" >
+				<textarea id="text" name="input" placeholder="Enter the text here">{% print(text) %}</textarea>
+				<input type="submit" id="btn" onclick="generateSummary()"/>
+				</form>
+			</div>
+			<div id="output">
+				<form action="/Summarization/copy" method="post">
+    <textarea id="outputtext" name="output" placeholder="Enter the text here">{{ response }}</textarea>
+					<textarea id="text1" style="display:none;" name="input" placeholder="Enter the text here">{% print(text) %}</textarea>
+    <div id="Outopt">
+        <button type="submit" name="submit" value="Copy" id="btn">Copy <iconify-icon icon="oui:copy-clipboard"  style="color: #ffffff"></iconify-icon></button>
+        <button type="submit" name="submit" value="Download" id="btn">Download <iconify-icon icon="line-md:download-loop" width="20px"  style="color: #ffffff" ></iconify-icon></button>
+    </div>
+    </div>
+</form>
+
+			</div>
+		</div>
+{% endblock %}
+{% block javascripts_bottom %}{% endblock %}
+```
